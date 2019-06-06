@@ -62,12 +62,18 @@ figure figcaption {
   background: #ffc30021;
 }
 
-.current {
-  display: block;
+figure.current {
+  opacity: 1;
+  height: auto;
+  transition: opacity 1s ease-out;
 }
 
-.hidden {
-  display: none;
+figure.hidden {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  position: absolute;
 }
 
 .textCenter {

@@ -1,0 +1,4 @@
+export const FETCH_PLACE_IMAGES = 'FETCH_PLACE_IMAGES';
+export const ADD_TO_CAROUSEL = 'ADD_TO_CAROUSEL';
+export const GET_NEXT_IMAGE = 'GET_NEXT_IMAGE';
+export const GET_PREV_IMAGE = 'GET_PREV_IMAGE';

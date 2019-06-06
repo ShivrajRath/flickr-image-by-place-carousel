@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Place Carousel",
+  "name": "Displays a carousel of images from flickr for a place",
   "icons": [
     {
       "src": "favicon.ico",

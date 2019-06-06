@@ -16,6 +16,8 @@ class MoveIcon extends Component {
     return (
       this.props.photos.length - this.props.currentPhotoIndex <
       constants.minRemainingPhotosToFetchNew
+    ) && (
+      (this.props.pagesFetched + 1) <= (this.props.totalPages)
     );
   }
 
@@ -66,14 +68,16 @@ MoveIcon.propTypes = {
   photos: PropTypes.array.isRequired,
   place: PropTypes.string.isRequired,
   pagesFetched: PropTypes.number.isRequired,
-  currentPhotoIndex: PropTypes.number.isRequired
+  currentPhotoIndex: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
   photos: state.carousel.photos,
   place: state.carousel.place,
   pagesFetched: state.carousel.pagesFetched,
-  currentPhotoIndex: state.carousel.currentPhotoIndex
+  currentPhotoIndex: state.carousel.currentPhotoIndex,
+  totalPages: state.carousel.totalPages,
 });
 
 export default connect(

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import MoveIcon from "./MoveIcon";
 import PropTypes from "prop-types";
 
-class IconContainer extends Component {
+export class IconContainer extends Component {
   render() {
     if (this.props.photos.length) {
       return (

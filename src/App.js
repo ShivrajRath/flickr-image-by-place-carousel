@@ -6,11 +6,11 @@ import IconContainer from "./components/IconContainer";
 
 function App() {
   return (
-    <div className="grid">
+    <React.Fragment>
       <Search />
       <IconContainer />
       <Carousel />
-    </div>
+    </React.Fragment>
   );
 }
 

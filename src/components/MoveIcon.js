@@ -15,9 +15,8 @@ class MoveIcon extends Component {
   shouldAddPhotosToCarousel() {
     return (
       this.props.photos.length - this.props.currentPhotoIndex <
-      constants.minRemainingPhotosToFetchNew
-    ) && (
-      (this.props.pagesFetched + 1) <= (this.props.totalPages)
+        constants.minRemainingPhotosToFetchNew &&
+      this.props.pagesFetched + 1 <= this.props.totalPages
     );
   }
 
@@ -32,6 +31,12 @@ class MoveIcon extends Component {
     }
   };
 
+  onKeyDownAndMove = e => {
+    if (e.key === "Enter") {
+      this.move();
+    }
+  };
+
   render() {
     let icon;
     if (this.props.isNext) {
@@ -40,7 +45,14 @@ class MoveIcon extends Component {
       icon = <span>&#9668;</span>;
     }
     return (
-      <div onClick={this.move} style={iconStyle}>
+      <div
+        tabIndex="0"
+        role="button"
+        aria-label={this.props.isNext ? "Next photo" : "Previous photo"}
+        onKeyDown={this.onKeyDownAndMove}
+        onClick={this.move}
+        style={iconStyle}
+      >
         {icon}
       </div>
     );
@@ -77,7 +89,7 @@ const mapStateToProps = state => ({
   place: state.carousel.place,
   pagesFetched: state.carousel.pagesFetched,
   currentPhotoIndex: state.carousel.currentPhotoIndex,
-  totalPages: state.carousel.totalPages,
+  totalPages: state.carousel.totalPages
 });
 
 export default connect(

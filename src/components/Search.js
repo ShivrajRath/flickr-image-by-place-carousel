@@ -31,7 +31,7 @@ class Search extends Component {
           value={this.state.place}
           onChange={this.onChange}
         />
-        <button type='submit' aria-label='search' aria-labelledby='search'>
+        <button type='submit'>
           Search
         </button>
       </form>

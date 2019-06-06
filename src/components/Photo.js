@@ -11,7 +11,6 @@ class Photo extends Component {
               alt={this.props.photo.title}
             />
             <figcaption >{this.props.photo.title}</figcaption>
-            <div>{this.props.photo.url}</div>
           </figure>
         </div>
       );

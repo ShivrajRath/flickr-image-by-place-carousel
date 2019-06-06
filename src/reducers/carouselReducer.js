@@ -7,12 +7,11 @@ import {
 
 const initialState = {
   photos: [],
-  place: "",
+  place: '',
   pagesFetched: 0,
   currentPhotoIndex: 0,
-  noPhotosFound: false,
-  previousPhotosAvailable: false,
-  nextPhotosAvailable: false
+  totalPages: 0,
+  noPhotosFound: false
 };
 
 export default function(state = initialState, action) {
@@ -20,7 +19,10 @@ export default function(state = initialState, action) {
     case FETCH_PLACE_IMAGES:
       return {
         ...state,
-        photos: action.payload.photo
+        place: action.payload.place,
+        pagesFetched: action.payload.pageNumber,
+        photos: action.payload.photos,
+        totalPages: action.payload.totalPages
       };
     case GET_NEXT_IMAGE:
       // first image

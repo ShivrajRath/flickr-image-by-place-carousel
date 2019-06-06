@@ -16,7 +16,9 @@ class Search extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.state.place && this.props.fetchPlaceImages(this.state.place);
+    if(this.props.place.trim() !== this.state.place){
+      this.state.place && this.props.fetchPlaceImages(this.state.place.trim(), 1);
+    }
   };
 
   render() {
@@ -38,10 +40,15 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  fetchPlaceImages: PropTypes.func.isRequired
+  fetchPlaceImages: PropTypes.func.isRequired,
+  place: PropTypes.string.isRequired
 };
 
+const mapStateToProps = state => ({
+  place: state.carousel.place
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchPlaceImages }
 )(Search);

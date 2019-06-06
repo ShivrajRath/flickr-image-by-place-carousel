@@ -1,13 +1,19 @@
 import { FETCH_PLACE_IMAGES, ADD_TO_CAROUSEL, GET_NEXT_IMAGE, GET_PREV_IMAGE } from "./types";
 import environment from "../environments/environment";
 
-export const fetchPlaceImages = place => dispatch => {
-  fetch(`${environment.host}/${place}/1/10`)
-    .then(res => res.json())
+const pageSize = 20;
+
+const getImages = (place, pageNumber) => {
+  return fetch(`${environment.host}/${place}/${pageNumber}/${pageSize}`)
+  .then(res => res.json());
+}
+
+export const fetchPlaceImages = (place, pageNumber) => dispatch => {
+  getImages(place, pageNumber)
     .then(photos =>
       dispatch({
         type: FETCH_PLACE_IMAGES,
-        payload: photos
+        payload: {place, pageNumber, photos: photos.photo, totalPages: photos.pages}
       })
     );
 };

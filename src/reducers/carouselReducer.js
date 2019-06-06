@@ -10,8 +10,7 @@ const initialState = {
   place: '',
   pagesFetched: 0,
   currentPhotoIndex: 0,
-  totalPages: 0,
-  noPhotosFound: false
+  totalPages: 0
 };
 
 export default function(state = initialState, action) {
@@ -42,6 +41,14 @@ export default function(state = initialState, action) {
         ...state,
         currentPhotoIndex: state.currentPhotoIndex - 1
       };
+    case ADD_TO_CAROUSEL:
+        return {
+          ...state,
+          place: action.payload.place,
+          pagesFetched: action.payload.pageNumber,
+          photos: [...state.photos, ...action.payload.photos],
+          totalPages: action.payload.totalPages
+        };
     default:
       return state;
   }

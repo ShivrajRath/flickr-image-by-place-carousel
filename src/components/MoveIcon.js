@@ -1,16 +1,34 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { nextImage, prevImage } from "../actions/carouselActions";
+import {
+  nextImage,
+  prevImage,
+  addToCarousel
+} from "../actions/carouselActions";
+import constants from "../constants";
 
 class MoveIcon extends Component {
+  /**
+   * Checks if new photos can be fetched
+   */
+  shouldAddPhotosToCarousel() {
+    return (
+      this.props.photos.length - this.props.currentPhotoIndex <
+      constants.minRemainingPhotosToFetchNew
+    );
+  }
+
   move = e => {
     if (this.props.isNext) {
       this.props.nextImage();
+      if (this.shouldAddPhotosToCarousel()) {
+        this.props.addToCarousel(this.props.place, this.props.pagesFetched + 1);
+      }
     } else {
       this.props.prevImage();
     }
-  }
+  };
 
   render() {
     let icon;
@@ -44,10 +62,21 @@ MoveIcon.propTypes = {
   isPrev: PropTypes.bool,
   isNext: PropTypes.bool,
   nextImage: PropTypes.func.isRequired,
-  prevImage: PropTypes.func.isRequired
+  prevImage: PropTypes.func.isRequired,
+  photos: PropTypes.array.isRequired,
+  place: PropTypes.string.isRequired,
+  pagesFetched: PropTypes.number.isRequired,
+  currentPhotoIndex: PropTypes.number.isRequired
 };
 
+const mapStateToProps = state => ({
+  photos: state.carousel.photos,
+  place: state.carousel.place,
+  pagesFetched: state.carousel.pagesFetched,
+  currentPhotoIndex: state.carousel.currentPhotoIndex
+});
+
 export default connect(
-  null,
-  { nextImage, prevImage }
+  mapStateToProps,
+  { nextImage, prevImage, addToCarousel }
 )(MoveIcon);

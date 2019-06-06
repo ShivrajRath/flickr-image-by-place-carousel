@@ -1,9 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import App from "./App";
+import { shallow } from "enzyme";
+import Search from "./components/Search";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+const wrapper = shallow(<App />);
+
+describe("<App />", () => {
+  it("renders three <Search /> component", () => {
+    expect(wrapper.find(Search).length).toEqual(1);
+  });
 });

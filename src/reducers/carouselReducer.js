@@ -21,7 +21,8 @@ export default function(state = initialState, action) {
         place: action.payload.place,
         pagesFetched: action.payload.pageNumber,
         photos: action.payload.photos,
-        totalPages: action.payload.totalPages
+        totalPages: action.payload.totalPages,
+        currentPhotoIndex: 0
       };
     case GET_NEXT_IMAGE:
       // first image

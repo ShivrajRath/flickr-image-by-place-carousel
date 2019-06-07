@@ -14,7 +14,7 @@ describe("<Search />", () => {
 
     it("on submit press fetch places images should be called", () => {
       component.find("form").simulate("submit");
-      expect(fetchPlaceImages).toHaveBeenCalled();
+      expect(fetchPlaceImages).toHaveBeenCalledWith("Seattle", 1);
       component.unmount();
     });
   });
@@ -47,5 +47,19 @@ describe("<Search />", () => {
       expect(props.fetchPlaceImages).not.toHaveBeenCalled();
       component.unmount();
     });
+  });
+
+  describe("set place on prop", () => {
+    const props = {
+      fetchPlaceImages: jest.fn(),
+      place: ""
+    };
+    const component = mount(<Search {...props} />);
+    component
+      .find("input")
+      .simulate("change", { target: { name: "place", value: "seattle" } });
+
+    expect(component.state("place")).toEqual("seattle");
+    component.unmount();
   });
 });

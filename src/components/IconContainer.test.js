@@ -30,5 +30,23 @@ describe("<IconContainer />", () => {
     it("should display icons", () => {
       expect(wrapper.find(MoveIcon).length).toEqual(2);
     });
+
+    it("should have prev icon", () => {
+      expect(
+        wrapper
+          .find(MoveIcon)
+          .at(0)
+          .props().isPrev
+      ).toBeTruthy();
+    });
+
+    it("should have next icon", () => {
+      expect(
+        wrapper
+          .find(MoveIcon)
+          .at(1)
+          .props().isNext
+      ).toBeTruthy();
+    });
   });
 });

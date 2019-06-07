@@ -3,11 +3,16 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Photo from "./Photo";
 
-class Carousel extends Component {
-
+export class Carousel extends Component {
   render() {
     const photos = this.props.photos.map((photo, index) => {
-      return <Photo photo={photo} key={photo.id} isVisible={index === this.props.currentPhotoIndex}/>;
+      return (
+        <Photo
+          photo={photo}
+          key={photo.id}
+          isVisible={index === this.props.currentPhotoIndex}
+        />
+      );
     });
     return <div>{photos}</div>;
   }

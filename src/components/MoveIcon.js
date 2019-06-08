@@ -8,7 +8,7 @@ import {
 } from "../actions/carouselActions";
 import constants from "../constants";
 
-class MoveIcon extends Component {
+export class MoveIcon extends Component {
   /**
    * Checks if new photos can be fetched
    */

@@ -9,7 +9,7 @@ import constants from "../constants";
 
 const getImages = (place, pageNumber) => {
   return fetch(
-    `${environment.host}/${place}/${pageNumber}/${constants.pageSize}`
+    `${environment.apihost}/${place}/${pageNumber}/${constants.pageSize}`
   ).then(res => res.json());
 };
 

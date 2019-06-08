@@ -10,14 +10,15 @@ export class Search extends Component {
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value.trim()
+      [e.target.name]: e.target.value
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
     if (
-      this.props.place.toLowerCase().trim() !== this.state.place.toLowerCase()
+      this.props.place.toLowerCase().trim() !==
+      this.state.place.trim().toLowerCase()
     ) {
       this.state.place &&
         this.props.fetchPlaceImages(this.state.place.trim(), 1);

@@ -1,5 +1,5 @@
 const environment = {
-  host: 'http://localhost:3333/images'
+  apihost: process.env.apihost || "http://localhost:3333/images"
 };
 
 export default environment;

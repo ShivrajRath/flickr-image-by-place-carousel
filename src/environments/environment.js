@@ -1,5 +1,5 @@
 const environment = {
-  apihost: process.env.apihost || "http://localhost:3333/images"
+  apihost: "https://aqueous-badlands-88028.herokuapp.com/images"
 };
 
 export default environment;

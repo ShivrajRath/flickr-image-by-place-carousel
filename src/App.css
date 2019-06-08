@@ -80,6 +80,10 @@ figure.hidden {
   position: absolute;
 }
 
+.hide {
+  display: none;
+}
+
 .textCenter {
   text-align: center;
 }

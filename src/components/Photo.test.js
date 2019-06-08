@@ -39,4 +39,17 @@ describe("<Photo />", () => {
       expect(wrapper.find("figcaption").text()).toEqual("test_title");
     });
   });
+
+  describe("Empty title", () => {
+    const props = {
+      photo: { url: "test_url", title: "" },
+      isVisible: true
+    };
+
+    const wrapper = shallow(<Photo {...props} />);
+
+    it("figcaption should have class hide", () => {
+      expect(wrapper.find("figcaption").hasClass("hide")).toBeTruthy();
+    });
+  });
 });

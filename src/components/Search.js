@@ -31,7 +31,7 @@ export class Search extends Component {
     return (
       <form onSubmit={this.onSubmit} className="search">
         <input
-          type="search"
+          type="text"
           name="place"
           placeholder="(e.g. Seattle, NYC)"
           value={this.state.place}

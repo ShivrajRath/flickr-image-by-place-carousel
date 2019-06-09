@@ -13,7 +13,8 @@ const initialState = {
   pagesFetched: 0,
   currentPhotoIndex: 0,
   totalPages: 0,
-  isLoading: false
+  isLoading: false,
+  noImageFound: false
 };
 
 export default function(state = initialState, action) {
@@ -25,7 +26,8 @@ export default function(state = initialState, action) {
         pagesFetched: action.payload.pageNumber,
         photos: action.payload.photos,
         totalPages: action.payload.totalPages,
-        currentPhotoIndex: 0
+        currentPhotoIndex: 0,
+        noImageFound: !action.payload.photos.length
       };
     case GET_NEXT_IMAGE:
       // first image

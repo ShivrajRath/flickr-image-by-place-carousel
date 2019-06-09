@@ -73,6 +73,12 @@ figure.hidden {
   position: absolute;
 }
 
+.sorry {
+  font-size: 1.1em;
+  text-align: center;
+  margin: 20px;
+}
+
 .hide {
   display: none;
 }

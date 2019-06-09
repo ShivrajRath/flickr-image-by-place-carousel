@@ -16,6 +16,12 @@ export class Carousel extends Component {
     });
     if (this.props.isLoading) {
       return <React.Fragment />;
+    } else if (this.props.noImageFound) {
+      return (
+        <div className="sorry">
+          Sorry!! no photos found for this place. Please try a new place.
+        </div>
+      );
     } else {
       return <div>{photos}</div>;
     }
@@ -24,12 +30,15 @@ export class Carousel extends Component {
 
 Carousel.propTypes = {
   photos: PropTypes.array.isRequired,
-  currentPhotoIndex: PropTypes.number.isRequired
+  currentPhotoIndex: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool,
+  noImageFound: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   photos: state.carousel.photos,
   isLoading: state.carousel.isLoading,
+  noImageFound: state.carousel.noImageFound,
   currentPhotoIndex: state.carousel.currentPhotoIndex
 });
 

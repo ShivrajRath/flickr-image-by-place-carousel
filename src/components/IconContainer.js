@@ -19,7 +19,8 @@ export class IconContainer extends Component {
 }
 
 IconContainer.propTypes = {
-  photos: PropTypes.array.isRequired
+  photos: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

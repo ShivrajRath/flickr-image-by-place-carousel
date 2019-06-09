@@ -10,9 +10,17 @@ import environment from "../environments/environment";
 import constants from "../constants";
 
 const getImages = (place, pageNumber) => {
-  return fetch(
-    `${environment.apihost}/${place}/${pageNumber}/${constants.pageSize}`
-  ).then(res => res.json());
+  return Promise.race([
+    fetch(
+      `${environment.apihost}/${place}/${pageNumber}/${constants.pageSize}`
+    ).then(res => res.json()),
+    new Promise((resolve, reject) =>
+      setTimeout(
+        () => reject(new Error("fetch timeout")),
+        constants.fetchTimeout
+      )
+    )
+  ]);
 };
 
 export const fetchPlaceImages = (place, pageNumber) => dispatch => {

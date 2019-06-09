@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Place Carousel Client
+
+Lets you find images for a place from flickr.
+
+## Try it
+
+Application hosted at [https://place-carousel.herokuapp.com/](https://place-carousel.herokuapp.com/)
 
 ## Available Scripts
 

@@ -38,6 +38,16 @@
   }
 }
 
+.info {
+  font-size: 1.1rem;
+  margin: 20px;
+}
+
+.info img {
+  width: 100px;
+  margin: 20px;
+}
+
 .icon-container {
   display: flex;
   background: #ffc300;

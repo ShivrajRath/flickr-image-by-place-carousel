@@ -2,15 +2,18 @@ import {
   ADD_TO_CAROUSEL,
   FETCH_PLACE_IMAGES,
   GET_NEXT_IMAGE,
-  GET_PREV_IMAGE
+  GET_PREV_IMAGE,
+  START_LOADER,
+  STOP_LOADER
 } from "../actions/types";
 
 const initialState = {
   photos: [],
-  place: '',
+  place: "",
   pagesFetched: 0,
   currentPhotoIndex: 0,
-  totalPages: 0
+  totalPages: 0,
+  isLoading: false
 };
 
 export default function(state = initialState, action) {
@@ -43,13 +46,19 @@ export default function(state = initialState, action) {
         currentPhotoIndex: state.currentPhotoIndex - 1
       };
     case ADD_TO_CAROUSEL:
-        return {
-          ...state,
-          place: action.payload.place,
-          pagesFetched: action.payload.pageNumber,
-          photos: [...state.photos, ...action.payload.photos],
-          totalPages: action.payload.totalPages
-        };
+      return {
+        ...state,
+        place: action.payload.place,
+        pagesFetched: action.payload.pageNumber,
+        photos: [...state.photos, ...action.payload.photos],
+        totalPages: action.payload.totalPages
+      };
+    case START_LOADER:
+    case STOP_LOADER:
+      return {
+        ...state,
+        isLoading: action.payload
+      };
     default:
       return state;
   }

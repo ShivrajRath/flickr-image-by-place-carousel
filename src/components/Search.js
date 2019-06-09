@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPlaceImages } from "../actions/carouselActions";
+import { fetchPlaceImages, startLoading } from "../actions/carouselActions";
 import PropTypes from "prop-types";
 
 export class Search extends Component {
@@ -20,8 +20,10 @@ export class Search extends Component {
       this.props.place.toLowerCase().trim() !==
       this.state.place.trim().toLowerCase()
     ) {
-      this.state.place &&
+      if (this.state.place) {
         this.props.fetchPlaceImages(this.state.place.trim(), 1);
+        this.props.startLoading();
+      }
     }
   };
 
@@ -31,7 +33,7 @@ export class Search extends Component {
         <input
           type="search"
           name="place"
-          placeholder="(e.g. Seattle, NYC, London)"
+          placeholder="(e.g. Seattle, NYC)"
           value={this.state.place}
           onChange={this.onChange}
         />
@@ -42,6 +44,7 @@ export class Search extends Component {
 }
 
 Search.propTypes = {
+  startLoading: PropTypes.func.isRequired,
   fetchPlaceImages: PropTypes.func.isRequired,
   place: PropTypes.string.isRequired
 };
@@ -52,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPlaceImages }
+  { fetchPlaceImages, startLoading }
 )(Search);

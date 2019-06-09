@@ -4,32 +4,33 @@ import { mount } from "enzyme";
 
 describe("<Search />", () => {
   describe("with place", () => {
-    const fetchPlaceImages = jest.fn();
     const props = {
-      fetchPlaceImages: fetchPlaceImages,
-      place: ""
+      fetchPlaceImages: jest.fn(),
+      startLoading: jest.fn(),
+      place: "Seattle"
     };
     const component = mount(<Search {...props} />);
-    component.setState({ place: "Seattle" });
+    component.setState({ place: "London" });
 
     it("on submit press fetch places images should be called", () => {
       component.find("form").simulate("submit");
-      expect(fetchPlaceImages).toHaveBeenCalledWith("Seattle", 1);
+      expect(props.fetchPlaceImages).toHaveBeenCalledWith("London", 1);
+      expect(props.startLoading).toHaveBeenCalled();
       component.unmount();
     });
   });
 
   describe("without place", () => {
-    const fetchPlaceImages = jest.fn();
     const props = {
-      fetchPlaceImages: fetchPlaceImages,
+      fetchPlaceImages: jest.fn(),
+      startLoading: jest.fn(),
       place: "Seattle"
     };
     const component = mount(<Search {...props} />);
-
     it("on submit press fetch places images should not be called", () => {
       component.find("form").simulate("submit");
-      expect(fetchPlaceImages).not.toHaveBeenCalled();
+      expect(props.fetchPlaceImages).not.toHaveBeenCalled();
+      expect(props.startLoading).not.toHaveBeenCalled();
       component.unmount();
     });
   });
@@ -37,6 +38,7 @@ describe("<Search />", () => {
   describe("with same place", () => {
     const props = {
       fetchPlaceImages: jest.fn(),
+      startLoading: jest.fn(),
       place: "Seattle"
     };
     const component = mount(<Search {...props} />);
@@ -45,6 +47,7 @@ describe("<Search />", () => {
     it("should not call the fetch image if state matches place on app state", () => {
       component.find("form").simulate("submit");
       expect(props.fetchPlaceImages).not.toHaveBeenCalled();
+      expect(props.startLoading).not.toHaveBeenCalled();
       component.unmount();
     });
   });
@@ -52,14 +55,17 @@ describe("<Search />", () => {
   describe("set place on prop", () => {
     const props = {
       fetchPlaceImages: jest.fn(),
-      place: ""
+      startLoading: jest.fn(),
+      place: "Seattle"
     };
     const component = mount(<Search {...props} />);
-    component
-      .find("input")
-      .simulate("change", { target: { name: "place", value: "seattle" } });
 
-    expect(component.state("place")).toEqual("seattle");
-    component.unmount();
+    it("should set place on prop", () => {
+      component
+        .find("input")
+        .simulate("change", { target: { name: "place", value: "seattle" } });
+      expect(component.state("place")).toEqual("seattle");
+      component.unmount();
+    });
   });
 });

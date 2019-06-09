@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export class IconContainer extends Component {
   render() {
-    if (this.props.photos.length) {
+    if (this.props.photos.length && !this.props.isLoading) {
       return (
         <div className="icon-container">
           <MoveIcon isPrev={true} />
@@ -23,7 +23,8 @@ IconContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  photos: state.carousel.photos
+  photos: state.carousel.photos,
+  isLoading: state.carousel.isLoading
 });
 
 export default connect(mapStateToProps)(IconContainer);

@@ -29,7 +29,7 @@ export const fetchPlaceImages = (place, pageNumber) => dispatch => {
       })
     )
     .catch(ex => {
-      alert("failed");
+      alert("Ooops!! Something went wrong. Please try again!");
     })
     .finally(() => {
       stopLoader(dispatch);

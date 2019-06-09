@@ -3,12 +3,14 @@ import { Search } from "./Search";
 import { mount } from "enzyme";
 
 describe("<Search />", () => {
+  const getProps = () => ({
+    fetchPlaceImages: jest.fn(),
+    startLoading: jest.fn(),
+    place: "Seattle"
+  });
+
   describe("with place", () => {
-    const props = {
-      fetchPlaceImages: jest.fn(),
-      startLoading: jest.fn(),
-      place: "Seattle"
-    };
+    const props = getProps();
     const component = mount(<Search {...props} />);
     component.setState({ place: "London" });
 
@@ -21,11 +23,7 @@ describe("<Search />", () => {
   });
 
   describe("without place", () => {
-    const props = {
-      fetchPlaceImages: jest.fn(),
-      startLoading: jest.fn(),
-      place: "Seattle"
-    };
+    const props = getProps();
     const component = mount(<Search {...props} />);
     it("on submit press fetch places images should not be called", () => {
       component.find("form").simulate("submit");
@@ -36,11 +34,7 @@ describe("<Search />", () => {
   });
 
   describe("with same place", () => {
-    const props = {
-      fetchPlaceImages: jest.fn(),
-      startLoading: jest.fn(),
-      place: "Seattle"
-    };
+    const props = getProps();
     const component = mount(<Search {...props} />);
     component.setState({ place: "seattle" });
 
@@ -53,11 +47,7 @@ describe("<Search />", () => {
   });
 
   describe("set place on prop", () => {
-    const props = {
-      fetchPlaceImages: jest.fn(),
-      startLoading: jest.fn(),
-      place: "Seattle"
-    };
+    const props = getProps();
     const component = mount(<Search {...props} />);
 
     it("should set place on prop", () => {

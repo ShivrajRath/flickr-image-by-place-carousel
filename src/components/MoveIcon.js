@@ -77,6 +77,7 @@ MoveIcon.propTypes = {
   isNext: PropTypes.bool,
   nextImage: PropTypes.func.isRequired,
   prevImage: PropTypes.func.isRequired,
+  addToCarousel: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   place: PropTypes.string.isRequired,
   pagesFetched: PropTypes.number.isRequired,

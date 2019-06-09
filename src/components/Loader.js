@@ -7,7 +7,7 @@ export class Loader extends Component {
     if (this.props.isLoading) {
       return (
         <div style={loaderParent}>
-          <div className="loader" />;
+          <div className="loader" />
         </div>
       );
     } else {

@@ -6,6 +6,8 @@ Lets you find images for a place from flickr.
 
 Application hosted at [https://place-carousel.herokuapp.com/](https://place-carousel.herokuapp.com/)
 
+Replace `apiHost` in `environment.js` to point to `localhost` for a local running version of the api, which can be found here [https://github.com/ShivrajRath/flickr-image-by-place-api](https://github.com/ShivrajRath/flickr-image-by-place-api)
+
 ## Available Scripts
 
 In the project directory, you can run:

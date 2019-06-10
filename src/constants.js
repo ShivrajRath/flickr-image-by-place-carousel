@@ -1,6 +1,6 @@
 const constants = {
   pageSize: 20,
-  fetchTimeout: 5000,
+  fetchTimeout: 10000,
   minRemainingPhotosToFetchNew: 5
 };
 

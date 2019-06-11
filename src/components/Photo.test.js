@@ -19,7 +19,11 @@ describe("<Photo />", () => {
 
   describe("Visible Photo", () => {
     const props = {
-      photo: { url: "test_url", title: "test_title" },
+      photo: {
+        url: "test_url",
+        title: "test_title",
+        lowResURL: "test_low_res_url"
+      },
       isVisible: true
     };
 
@@ -31,7 +35,7 @@ describe("<Photo />", () => {
     });
 
     it("image should have url and alt", () => {
-      expect(wrapper.find("img").prop("src")).toEqual("test_url");
+      expect(wrapper.find("img").prop("src")).toEqual("test_low_res_url");
       expect(wrapper.find("img").prop("alt")).toEqual("test_title");
     });
 
@@ -42,7 +46,7 @@ describe("<Photo />", () => {
 
   describe("Empty title", () => {
     const props = {
-      photo: { url: "test_url", title: "" },
+      photo: { url: "test_url", title: "", lowResURL: "test_low_res_url" },
       isVisible: true
     };
 

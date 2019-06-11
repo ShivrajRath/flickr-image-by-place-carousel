@@ -2,15 +2,31 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Photo extends Component {
+  constructor(props) {
+    super(props);
+    this.img = React.createRef();
+  }
+
+  componentDidMount() {
+    let img = new Image();
+    img.src = this.props.photo.url;
+    const self = this;
+
+    // loads the high res image url post load
+    img.onload = function() {
+      self.img.current.src = img.src;
+    };
+  }
+
   render() {
-    const { url, title } = this.props.photo;
+    const { title, lowResURL } = this.props.photo;
     return (
       <figure
         className={
           this.props.isVisible ? "current textCenter" : "hidden textCenter"
         }
       >
-        <img src={url} alt={title} />
+        <img src={lowResURL} alt={title} ref={this.img} />
         <figcaption className={title ? "" : "hide"}>{title}</figcaption>
       </figure>
     );

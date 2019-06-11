@@ -12,7 +12,9 @@ import constants from "../constants";
 const getImages = (place, pageNumber) => {
   return Promise.race([
     fetch(
-      `${environment.apihost}/${place}/${pageNumber}/${constants.pageSize}`
+      `${environment.apihost}/images/${place}/${pageNumber}/${
+        constants.pageSize
+      }`
     ).then(res => res.json()),
     new Promise((resolve, reject) =>
       setTimeout(
